@@ -18,7 +18,7 @@ export default class Transform {
       clearInterval(animationIntervalId);
     }
 
-    animationIntervalId = setInterval(() => {
+    const handler = () => {
       const params = {};
 
       stage = 1 - ((endAt - Date.now()) / duration);
@@ -39,7 +39,11 @@ export default class Transform {
       onTick(params);
 
       Object.assign(this, { stage });
-    });
+    };
+
+    handler();
+
+    animationIntervalId = setInterval(handler);
 
     Object.assign(this, { animationIntervalId });
   }

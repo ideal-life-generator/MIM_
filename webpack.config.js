@@ -41,6 +41,11 @@ const common = {
           'sass'
         ],
       },
+      {
+        test: /\.jpg$/,
+        exclude: /node_modules/,
+        loader: 'file',
+      },
     ],
   },
   resolve: {

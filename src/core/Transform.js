@@ -7,7 +7,7 @@ export default class Transform {
     Object.assign(this, settings);
   }
 
-  fromTo(previousState, nextState, onTick) {
+  start(onTick) {
     let { stage, animationIntervalId } = this;
     const { duration } = this;
 
@@ -19,8 +19,6 @@ export default class Transform {
     }
 
     const handler = () => {
-      const params = {};
-
       stage = 1 - ((endAt - Date.now()) / duration);
 
       if (stage >= 1) {
@@ -29,14 +27,7 @@ export default class Transform {
         clearInterval(animationIntervalId);
       }
 
-      Object.keys(previousState).forEach((prop) => {
-        const { [prop]: previousValue } = previousState;
-        const { [prop]: nextValue } = nextState;
-
-        params[prop] = previousValue + ((nextValue - previousValue) * stage);
-      });
-
-      onTick(params);
+      onTick(stage);
 
       Object.assign(this, { stage });
     };

@@ -1,7 +1,5 @@
 export default class Figure {
   bindEvents(events) {
-    console.log(events);
-
     Object.keys(events).forEach((event) => {
       const [selector, eventName] = event.split(' ');
       const { components: { [selector]: component } } = this;
@@ -17,6 +15,10 @@ export default class Figure {
     if (events) {
       this.bindEvents(events);
     }
+  }
+
+  setProps(props) {
+    Object.assign(this.props, props);
   }
 
   render() {

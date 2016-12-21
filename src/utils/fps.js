@@ -18,6 +18,11 @@ function createCounter(title) {
 
   if (!counterInstance) {
     const counterContainer = counterContainerTemplate.cloneNode();
+
+    Object.assign(counterContainer.style, {
+      color: '#FFF',
+    });
+
     const counterTitle = counterTitleTemplate.cloneNode();
     const counter = counterTemplate.cloneNode();
 
